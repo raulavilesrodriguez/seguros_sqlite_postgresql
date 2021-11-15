@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import environ
 import os
-from decouple import config
+
 
 env = environ.Env(
     # set casting, default value
@@ -186,5 +186,3 @@ REST_FRAMEWORK = {
 ],
 }
 
-if config('DJANGO_PRODUCTION', default=False, cast=bool):
-    from .settings_production import *
