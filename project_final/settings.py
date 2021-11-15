@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import environ
 import os
+from decouple import config
 
 env = environ.Env(
     # set casting, default value
@@ -29,13 +30,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False
+DEBUG = False
 
-DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
-SECRET_KEY = config('SECRET_KEY', default='Casa1234')
 
 ALLOWED_HOSTS = ['*']
 
