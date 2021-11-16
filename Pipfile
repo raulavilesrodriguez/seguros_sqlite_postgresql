@@ -12,6 +12,7 @@ django-cors-headers = "*"
 pandas = "*"
 psycopg2 = "*"
 django-environ = "*"
+python-decouple = "*"
 
 [dev-packages]
 
