@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import environ
 import os
-
+from decouple import config
 
 env = environ.Env(
     # set casting, default value
@@ -30,11 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+#SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default=env('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
+#DEBUG = False
+DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = ['*']
 
@@ -63,15 +64,18 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'project_final.urls'
 
@@ -159,10 +163,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Specifies localhost port 3000 where the React
 # server will be running is safe to receive requests from.
-CORS_ALLOWED_ORIGINS = [    
-'http://localhost:3000',
-'http://192.168.1.61:3000'
-]
+#CORS_ALLOWED_ORIGINS = [    
+#'http://localhost:3000',
+#'http://192.168.1.61:3000'
+#]
 
 # Django All Auth config. Add all of this.
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -186,3 +190,5 @@ REST_FRAMEWORK = {
 ],
 }
 
+if config('DJANGO_PRODUCTION', default=False, cast=bool):
+    from .settings_production import *
