@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = env('SECRET_KEY')
-SECRET_KEY = config('SECRET_KEY', default=env('SECRET_KEY'))
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-4+-(*k*12uz@@wkjc2*(biu4q3@u18gon-q4#oq7hyudmki8)7')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = False
@@ -192,3 +192,5 @@ REST_FRAMEWORK = {
 
 if config('DJANGO_PRODUCTION', default=False, cast=bool):
     from .settings_production import *
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
