@@ -193,4 +193,4 @@ REST_FRAMEWORK = {
 if config('DJANGO_PRODUCTION', default=False, cast=bool):
     from .settings_production import *
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
