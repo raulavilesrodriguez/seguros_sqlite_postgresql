@@ -9,8 +9,8 @@ class User(AbstractUser):
 
 class PlanSeguro(models.Model):
     plan = models.TextField(max_length=50)
-    coverage = models.IntegerField(max_length=20)
-    deducible = models.IntegerField(max_length=20)
+    coverage = models.IntegerField()
+    deducible = models.IntegerField()
     company = models.TextField(max_length=100, null=True, blank=True)
 
     def __str__(self):
@@ -19,7 +19,7 @@ class PlanSeguro(models.Model):
 class Contact(models.Model):
     creador = models.ForeignKey(User, on_delete=models.PROTECT, related_name="creador")
     name = models.TextField(max_length=200)
-    phone = models.IntegerField(max_length=20)
+    phone = models.IntegerField()
     email = models.TextField(max_length=50, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     iscustomer = models.BooleanField(default=False)
@@ -33,7 +33,7 @@ class Customer(models.Model):
     planes = models.ManyToManyField(PlanSeguro, blank=True, related_name='customers')
     timecustomer = models.DateTimeField(auto_now_add=True)
     payment = models.FloatField(max_length=10, blank= True, null=True)
-    age = models.IntegerField(max_length=3, blank=True, null=True)
+    age = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"contacto:{self.contacto.name} - payment:{self.payment}"
