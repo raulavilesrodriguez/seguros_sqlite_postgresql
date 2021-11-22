@@ -33,7 +33,7 @@ class Customer(models.Model):
     planes = models.ManyToManyField(PlanSeguro, blank=True, related_name='customers')
     timecustomer = models.DateTimeField(auto_now_add=True)
     payment = models.FloatField(max_length=10, blank= True, null=True)
-    age = models.IntegerField(blank=True, null=True)
+    age = models.CharField(blank=True, null=True, max_length=3, validators=[RegexValidator(r'^\d{1,3}$')])
 
     def __str__(self):
         return f"contacto:{self.contacto.name} - payment:{self.payment}"
