@@ -154,6 +154,20 @@ Package for calculating the cumulative sum of a matrix:
 ```sh
 pipenv install django djangorestframework django-rest-auth django-allauth django-cors-headers pandas
 ```
+- Create the Django project:
+```sh
+django-admin startproject project_final .
+```
+Note the period at the end of the command. This will create the project in the current directory instead of making a whole new one.
+
+- Terminate the development server in terminal and run the following command to create the app:
+```sh
+python manage.py startapp capstone
+```
+Instalar para poder usar variables de entorno, ahí es donde guardaremos la información en relación con la conexión a la base de datos:
+```sh
+pipenv install django-environ
+```
 
 Install the following packages to upload to Heroku:
 OJO Todos los paquetes se deben instlar en pipenv, sino no funciona en Heroku. Si aprece un error import fcntl en el log de Heroku, instalar en ubuntu (El uso del subsistema de Windows para Linux (WSL) en Windows 10) gunicorn. 
