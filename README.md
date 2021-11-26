@@ -313,6 +313,13 @@ heroku git:remote -a <nombre de tu aplicación heroku>
 ```sh
 heroku addons:create heroku-postgresql:hobby-dev
 ```
+- En settings de la app en heroku configurar lo siguiente
+```sh
+DATABASE_URL    Se estableció con la BD
+DJANGO_DEBUG    FALSE
+DJANGO_PRODUCTION   True
+SECRET_KEY      Tupassword
+```
 - Add your project’s files to Git
 ```sh
 git add .
